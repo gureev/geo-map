@@ -1,0 +1,21 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    { "type": "Feature", "properties": { "id": "1", "город": "Сургут" }, "geometry": { "type": "Point", "coordinates": [ 73.374760390819858, 61.26007027734591 ] } },
+    { "type": "Feature", "properties": { "id": "2", "город": "Ханты-Мансийск" }, "geometry": { "type": "Point", "coordinates": [ 68.998805150645808, 61.000642678847179 ] } },
+    { "type": "Feature", "properties": { "id": "3", "город": "Ноябрьск" }, "geometry": { "type": "Point", "coordinates": [ 75.429482006540127, 63.203903831924457 ] } },
+    { "type": "Feature", "properties": { "id": "4", "город": "Серов" }, "geometry": { "type": "Point", "coordinates": [ 60.573586810035607, 59.610381973435643 ] } },
+    { "type": "Feature", "properties": { "id": "5", "город": "Нижний Тагил" }, "geometry": { "type": "Point", "coordinates": [ 59.93739685370381, 57.898376232734854 ] } },
+    { "type": "Feature", "properties": { "id": "6", "город": "Тюмень" }, "geometry": { "type": "Point", "coordinates": [ 65.542746198681215, 57.169239833673075 ] } },
+    { "type": "Feature", "properties": { "id": "7", "город": "Екатеринбург" }, "geometry": { "type": "Point", "coordinates": [ 60.590781133179703, 56.83211960063187 ] } },
+    { "type": "Feature", "properties": { "id": "8", "город": "Тобольск" }, "geometry": { "type": "Point", "coordinates": [ 68.259449255449411, 58.189587336934316 ] } },
+    { "type": "Feature", "properties": { "id": "9", "город": "Челябинск" }, "geometry": { "type": "Point", "coordinates": [ 61.381719997808425, 55.154341524989334 ] } },
+    { "type": "Feature", "properties": { "id": "10", "город": "Магнитогорск" }, "geometry": { "type": "Point", "coordinates": [ 58.974514757634076, 53.438765320783986 ] } },
+    { "type": "Feature", "properties": { "id": "11", "город": "Южноуральск" }, "geometry": { "type": "Point", "coordinates": [ 61.257061155013687, 54.43945282571304 ] } },
+    { "type": "Feature", "properties": { "id": "12", "город": "Троицк" }, "geometry": { "type": "Point", "coordinates": [ 61.549364648463424, 54.083242475992087 ] } },
+    { "type": "Feature", "properties": { "id": "13", "город": "Курган" }, "geometry": { "type": "Point", "coordinates": [ 65.312772126628857, 55.457428501438557 ] } },
+    { "type": "Feature", "properties": { "id": "13", "город": "Шадринск" }, "geometry": { "type": "Point", "coordinates": [ 63.638474910471849, 56.088467545135011 ] } },
+    { "type": "Feature", "properties": { "id": "14", "город": "Долматово" }, "geometry": { "type": "Point", "coordinates": [ 62.933507661563659, 56.255978137146414 ] } },
+    { "type": "Feature", "properties": { "id": "15", "город": "Надым" }, "geometry": { "type": "Point", "coordinates": [ 72.506447072042747, 65.531206460260805 ] } }
+  ]
+}
