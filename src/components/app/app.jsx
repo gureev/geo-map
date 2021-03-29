@@ -1,8 +1,8 @@
-import React, { useState, useReducer, useEffect } from 'react';
+import React, { useReducer, useRef } from 'react';
 import Map from '../map/map';
 import { Layers, TileLayer, VectorLayer } from '../layers';
 import { osm, vector } from '../source';
-import { fromLonLat, get } from 'ol/proj';
+import { get } from 'ol/proj';
 import GeoJSON from 'ol/format/GeoJSON';
 import { Controls, FullScreenControl } from '../controls';
 import Input from '../input/input';
@@ -104,15 +104,14 @@ const reducer = (state, { type, payload }) => {
 };
 
 const App = () => {
-  const [center, setCenter] = useState([53.206889, 56.853093]);
-  const [zoom, setZoom] = useState(9);
+  const zoom = useRef(9);
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleCheckbox = (actionType) => (event) => dispatch({ type: actionType, payload: event.target.checked });
 
   return (
     <div className='app'>
-      <Map center={fromLonLat(center)} zoom={zoom}>
+      <Map zoom={zoom.current}>
         <Layers>
           {state.osm.visible && (
             <TileLayer

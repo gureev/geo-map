@@ -2,18 +2,18 @@ import React, { useEffect, useRef, useState } from 'react';
 import { View, Map as OLMap } from 'ol';
 import MapContext from './map.context';
 import './map.scss';
+import { fromLonLat } from 'ol/proj';
 
 const Map = ({
   children,
   zoom,
-  center,
 }) => {
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
 
   useEffect(() => {
     const options = {
-      view: new View({ zoom, center }),
+      view: new View({ zoom, center: fromLonLat([53.206889, 56.853093]) }),
       layers: [],
       controls: [],
       overlays: [],
@@ -34,12 +34,6 @@ const Map = ({
       map.getView().setZoom(zoom);
     }
   }, [zoom]);
-
-  useEffect(() => {
-    if (map) {
-      map.getView().setCenter(center);
-    }
-  }, [center]);
 
   return (
     <MapContext.Provider value={{ map }}>
