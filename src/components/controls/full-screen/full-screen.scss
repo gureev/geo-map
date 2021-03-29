@@ -1,0 +1,11 @@
+.control-full-screen {
+  top: 10px;
+  right: 10px;
+
+  &__button {
+    height: 36px;
+    width: 36px;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+}

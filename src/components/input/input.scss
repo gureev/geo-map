@@ -1,0 +1,19 @@
+.input {
+  cursor: pointer;
+
+  &[type='checkbox'] {
+    margin-right: 6px;
+    order: -1;
+  }
+
+  &__container {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+
+    &:not(:last-child) {
+      margin-bottom: 6px;
+    }
+  }
+}
