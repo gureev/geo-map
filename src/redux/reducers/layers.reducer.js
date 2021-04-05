@@ -50,8 +50,26 @@ const initialState = {
       }
     ]
   },
-  rivers: {
+  seas: {
     id: 2,
+    name: 'Моря',
+    options: {
+      visible: true,
+      style: styles.seas,
+    },
+    layers: [
+      {
+        id: 0,
+        vectors: [
+          vector({
+            features: new GeoJSON().readFeatures(geojsonSeas, { featureProjection: get(PROJECTION) }),
+          })
+        ]
+      }
+    ]
+  },
+  rivers: {
+    id: 3,
     name: 'Реки',
     options: {
       visible: true,
@@ -69,7 +87,7 @@ const initialState = {
     ]
   },
   cities: {
-    id: 3,
+    id: 4,
     name: 'Города',
     options: {
       visible: true,
@@ -87,7 +105,7 @@ const initialState = {
     ]
   },
   protectedArea: {
-    id: 4,
+    id: 5,
     name: 'ООПТ',
     options: {
       visible: true,
@@ -99,24 +117,6 @@ const initialState = {
         vectors: [
           vector({
             features: new GeoJSON().readFeatures(geojsonOOPT, { featureProjection: get(PROJECTION) }),
-          })
-        ]
-      }
-    ]
-  },
-  seas: {
-    id: 5,
-    name: 'Моря',
-    options: {
-      visible: true,
-      style: styles.oopt,
-    },
-    layers: [
-      {
-        id: 0,
-        vectors: [
-          vector({
-            features: new GeoJSON().readFeatures(geojsonSeas, { featureProjection: get(PROJECTION) }),
           })
         ]
       }

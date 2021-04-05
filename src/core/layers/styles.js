@@ -1,7 +1,7 @@
 import { Circle, Fill, Stroke, Style, } from 'ol/style';
 import { createTextStyle } from '../utils';
 
-export const border = (feature, resolution) => new Style({
+export const border = new Style({
   stroke: new Stroke({
     color: 'rgba(238, 20, 16, 1.0)',
     lineDash: null,
@@ -9,11 +9,9 @@ export const border = (feature, resolution) => new Style({
     lineJoin: 'bevel',
     width: 0,
   }),
-  text: createTextStyle(feature, resolution, '', null,
-    null, 'line'),
 });
 
-export const region = (feature, resolution) => [
+export const region = [
   new Style({
     stroke: new Stroke({
       color: 'rgba(114, 133, 132, 1.0)',
@@ -23,11 +21,10 @@ export const region = (feature, resolution) => [
       width: 0,
     }),
     fill: new Fill({ color: 'rgba(222, 255, 255, 0.35)' }),
-    text: createTextStyle(feature, resolution),
   }),
 ];
 
-export const river = (feature, resolution) => [
+export const river = [
   new Style({
     stroke: new Stroke({
       color: 'rgba(81, 10, 146, 1.0)',
@@ -37,11 +34,10 @@ export const river = (feature, resolution) => [
       width: 0,
     }),
     fill: new Fill({ color: 'rgba(222, 255, 255, 1.0)' }),
-    text: createTextStyle(feature, resolution, null, null, null, 'line'),
   }),
 ];
 
-export const city = (feature, resolution) => [
+export const city = [
   new Style({
     image: new Circle({
       radius: 4.0,
@@ -54,11 +50,10 @@ export const city = (feature, resolution) => [
       }),
       fill: new Fill({ color: 'rgba(231, 50, 247, 1.0)' }),
     }),
-    text: createTextStyle(feature, resolution),
   }),
 ];
 
-export const oopt = (feature, resolution) => [
+export const oopt = [
   new Style({
     stroke: new Stroke({
       color: 'rgba(0, 0, 0, 1.0)',
@@ -67,7 +62,19 @@ export const oopt = (feature, resolution) => [
       lineJoin: 'miter',
       width: 0,
     }),
-    fill: new Fill({ color: 'rgba(6, 240, 240, 0.35)' }),
-    text: createTextStyle(feature, resolution),
+    fill: new Fill({ color: 'rgba(222,124,124,0.3)' }),
+  }),
+];
+
+export const seas = [
+  new Style({
+    stroke: new Stroke({
+      color: 'rgba(0, 0, 0, 1.0)',
+      lineDash: null,
+      lineCap: 'butt',
+      lineJoin: 'miter',
+      width: 0,
+    }),
+    fill: new Fill({ color: 'rgba(6, 240, 240, 0.3)' }),
   }),
 ];
