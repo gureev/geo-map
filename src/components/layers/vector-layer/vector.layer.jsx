@@ -1,8 +1,8 @@
-import { useContext, useEffect } from "react";
-import MapContext from "../map/map.context";
+import { useContext, useEffect } from 'react';
+import MapContext from "../../map/map.context";
 import OLVectorLayer from "ol/layer/Vector";
 
-const VectorLayer = ({ source, style, options = {} }) => {
+const VectorLayer = ({ source, options = {} }) => {
   const { map } = useContext(MapContext);
 
   useEffect(() => {
@@ -11,12 +11,11 @@ const VectorLayer = ({ source, style, options = {} }) => {
     }
 
     const vectorLayer = new OLVectorLayer({
+      declutter: true,
       source,
-      style,
       ...options
     });
     map.addLayer(vectorLayer);
-    vectorLayer.setZIndex(options.zIndex ?? 1);
 
     return () => {
       if (map) {

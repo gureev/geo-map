@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import MapContext from '../map/map.context';
+import MapContext from '../../map/map.context';
 import OLTileLayer from 'ol/layer/Tile';
 
 const TileLayer = ({ source, zIndex = 0 }) => {
