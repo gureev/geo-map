@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Map from '../map/map';
 import { Layers, TileLayer, VectorLayer } from '../layers';
 import { osm } from '../source';
@@ -11,15 +11,18 @@ import LayersController from '../controls/layers-controller/layers-controller';
 const App = () => {
   const zoom = useRef(9);
   const layers = useSelector(selectLayers);
+  const [isVisibleOSM, setIsVisibleOSM] = useState(true);
 
   return (
     <div className='app'>
       <Map zoom={zoom.current}>
         <Layers>
-          <TileLayer
-            source={osm()}
-            zIndex={0}
-          />
+          {isVisibleOSM && (
+            <TileLayer
+              source={osm()}
+              zIndex={0}
+            />
+          )}
           {Object.values(layers).map(layerObject => layerObject.layers.map(layer => layer.vectors.map((vector, ind) => (
             <VectorLayer
               key={`${layerObject.id}-${layer.id}-${ind}`}
@@ -30,7 +33,7 @@ const App = () => {
         </Layers>
         <Controls>
           <FullScreenControl />
-          <LayersController />
+          <LayersController controls={{ osm: { name: 'Карта OSM', control: setIsVisibleOSM, value: isVisibleOSM } }} />
         </Controls>
       </Map>
     </div>
