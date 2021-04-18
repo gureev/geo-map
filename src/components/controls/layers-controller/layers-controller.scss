@@ -10,4 +10,13 @@
   color: #eee;
   border-radius: 8px;
   z-index: 1;
+
+  &__sublist {
+    padding-left: 20px;
+  }
+
+  &__element {
+    font-size: 1.8rem;
+    list-style-type: none;
+  }
 }

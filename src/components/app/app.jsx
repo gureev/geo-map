@@ -26,8 +26,12 @@ const App = () => {
           {Object.values(layers).map(layerObject => layerObject.layers.map(layer => layer.vectors.map((vector, ind) => (
             <VectorLayer
               key={`${layerObject.id}-${layer.id}-${ind}`}
-              source={vector}
-              options={ { ...layerObject.options, ...layer.options } }
+              source={vector instanceof Array ? vector[0] : vector}
+              options={ {
+                ...layerObject.options,
+                ...layer.options,
+                style: vector instanceof Array ? vector[1] : layerObject.options.style
+              } }
             />
           ))))}
         </Layers>

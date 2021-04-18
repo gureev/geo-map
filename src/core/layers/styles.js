@@ -1,5 +1,4 @@
 import { Circle, Fill, Stroke, Style, } from 'ol/style';
-import { createTextStyle } from '../utils';
 
 export const border = new Style({
   stroke: new Stroke({
@@ -77,4 +76,42 @@ export const seas = [
     }),
     fill: new Fill({ color: 'rgba(6, 240, 240, 0.3)' }),
   }),
+];
+
+export const noise = (color) => [
+  new Style({
+    stroke: new Stroke({
+      color,
+      lineDash: null,
+      lineCap: 'square',
+      lineJoin: 'bevel',
+      width: 4
+    }),
+  })
+];
+
+export const landscaping = (fillColor) => [
+  new Style({
+    stroke: new Stroke({
+      color: 'rgba(35,35,35,0.5)',
+      lineDash: null,
+      lineCap: 'butt',
+      lineJoin: 'miter',
+      width: 0
+    }),
+    fill: new Fill({ color: fillColor }),
+  })
+];
+
+export const emissions = [
+  new Style({
+    stroke: new Stroke({
+      color: 'rgba(35, 35, 35, 1.0)',
+      lineDash: null,
+      lineCap: 'butt',
+      lineJoin: 'miter',
+      width: 0
+    }),
+    fill: new Fill({ color: 'rgba(231, 113, 72, 0.6)' }),
+  })
 ];
