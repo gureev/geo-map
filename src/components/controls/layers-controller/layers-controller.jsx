@@ -9,7 +9,7 @@ const LayersController = ({
   controls = {}
 }) => {
   const dispatch = useDispatch();
-  const layers = useSelector(selectLayers);
+  const regions = useSelector(selectLayers);
 
   const handleCheckbox = (key) => () => dispatch(toggleLayerVisibility(key));
   const handleSublayerCheckbox = (key, sublayerKey) => () => dispatch(toggleSubLayerVisibility(key, sublayerKey));
@@ -28,22 +28,22 @@ const LayersController = ({
           />
         </li>
       ))}
-      {Object.entries(layers).map(([key, layerObject]) => (
+      {Object.entries(regions).map(([key, region]) => (
         <li key={key} className='layers-controller__element'>
           <Input
             type='checkbox'
-            checked={layerObject.options.visible}
-            label={layerObject.name}
+            checked={region.options.visible}
+            label={region.name}
             onChange={handleCheckbox(key)}
           />
-          {layerObject.layers.map(sublayer => sublayer.key && (
-            <ul className='layers-controller__sublist' key={sublayer.id}>
+          {Object.entries(region.subjects).map(([subjectKey, subject]) => (
+            <ul className='layers-controller__sublist' key={subjectKey}>
               <li className='layers-controller__element'>
                 <Input
                   type='checkbox'
-                  checked={sublayer.options.visible}
-                  label={sublayer.name}
-                  onChange={handleSublayerCheckbox(key, sublayer.key)}
+                  checked={subject.options.visible}
+                  label={subject.name}
+                  onChange={handleSublayerCheckbox(key, subjectKey)}
                 />
               </li>
             </ul>

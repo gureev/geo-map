@@ -10,7 +10,7 @@ import LayersController from '../controls/layers-controller/layers-controller';
 
 const App = () => {
   const zoom = useRef(9);
-  const layers = useSelector(selectLayers);
+  const regions = useSelector(selectLayers);
   const [isVisibleOSM, setIsVisibleOSM] = useState(true);
 
   return (
@@ -23,17 +23,19 @@ const App = () => {
               zIndex={0}
             />
           )}
-          {Object.values(layers).map(layerObject => layerObject.layers.map(layer => layer.vectors.map((vector, ind) => (
-            <VectorLayer
-              key={`${layerObject.id}-${layer.id}-${ind}`}
-              source={vector instanceof Array ? vector[0] : vector}
-              options={ {
-                ...layerObject.options,
-                ...layer.options,
-                style: vector instanceof Array ? vector[1] : layerObject.options.style
-              } }
-            />
-          ))))}
+          {Object.entries(regions).map(([regionKey, region]) => Object.entries(region.subjects).map((([subjectKey, subject]) =>
+            subject.vectors.map((vector, ind) => (
+              <VectorLayer
+                key={`${regionKey}-${subjectKey}-${ind}`}
+                source={vector instanceof Array ? vector[0] : vector}
+                options={ {
+                  ...region.options,
+                  ...subject.options,
+                  style: vector instanceof Array ? vector[1] : (subject.options.style ?? region.options.style)
+                } }
+              />
+            ))
+          )))}
         </Layers>
         <Controls>
           <FullScreenControl />

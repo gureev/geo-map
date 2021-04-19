@@ -103,7 +103,7 @@ export const landscaping = (fillColor) => [
   })
 ];
 
-export const emissions = [
+export const industrialZones = [
   new Style({
     stroke: new Stroke({
       color: 'rgba(35, 35, 35, 1.0)',

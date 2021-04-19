@@ -24,10 +24,10 @@ import landscaping20 from '../../assets/layers/landscaping/landscaping_20-39.jso
 import landscaping40 from '../../assets/layers/landscaping/landscaping_40-59.json';
 import landscaping60 from '../../assets/layers/landscaping/landscaping_60-100.json';
 
-import emissionsLeninskiy from '../../assets/layers/emissions/emissions_leninskiy.json';
-import emissionsOktyabrsky from '../../assets/layers/emissions/emissions_oktyabrsky.json';
-import emissionsPervomaysky from '../../assets/layers/emissions/emissions_pervomaysky.json';
-import emissionsUstinovsky from '../../assets/layers/emissions/emissions_ustinovskiy.json';
+import industrialZoneLeninskiy from '../../assets/layers/industrialZones/industrial_zone_leninskiy.json';
+import industrialZoneOktyabrsky from '../../assets/layers/industrialZones/industrial_zone_oktyabrsky.json';
+import industrialZonePervomaysky from '../../assets/layers/industrialZones/industrial_zone_pervomaysky.json';
+import industrialZoneUstinovsky from '../../assets/layers/industrialZones/industrial_zone_ustinovskiy.json';
 
 const noises = [
   [noise58, 'rgba(251, 249, 224, 1)'],
@@ -47,134 +47,108 @@ const landscaping = [
 ];
 
 const emissions = [
-  emissionsLeninskiy,
-  emissionsOktyabrsky,
-  emissionsPervomaysky,
-  emissionsUstinovsky,
+  industrialZoneLeninskiy,
+  industrialZoneOktyabrsky,
+  industrialZonePervomaysky,
+  industrialZoneUstinovsky,
 ];
 
 const PROJECTION = 'EPSG:3857';
 
 const initialState = {
-  borders: {
-    id: 0,
-    name: 'Границы',
+  urfo: {
+    name: 'Уральский федеральный округ',
     options: {
-      visible: true,
-      style: styles.border,
+      visible: false,
     },
-    layers: [
-      {
+    subjects: {
+      borders: {
         id: 0,
+        name: 'Границы',
+        options: {
+          visible: false,
+          style: styles.border,
+        },
         vectors: [
           vector({
             features: new GeoJSON().readFeatures(geojsonBorders, { featureProjection: get(PROJECTION) }),
           })
-        ]
-      }
-    ],
-  },
-  regions: {
-    id: 1,
-    name: 'Регионы',
-    options: {
-      visible: true,
-      style: styles.region,
-    },
-    layers: [
-      {
-        id: 0,
+        ],
+      },
+      regions: {
+        id: 1,
+        name: 'Регионы',
+        options: {
+          visible: false,
+          style: styles.region,
+        },
         vectors: [
           vector({
             features: new GeoJSON().readFeatures(geojsonRegions, { featureProjection: get(PROJECTION) }),
           })
         ]
-      }
-    ]
-  },
-  seas: {
-    id: 2,
-    name: 'Моря',
-    options: {
-      visible: true,
-      style: styles.seas,
-    },
-    layers: [
-      {
-        id: 0,
+      },
+      seas: {
+        id: 2,
+        name: 'Моря',
+        options: {
+          visible: false,
+          style: styles.seas,
+        },
         vectors: [
           vector({
             features: new GeoJSON().readFeatures(geojsonSeas, { featureProjection: get(PROJECTION) }),
           })
         ]
-      }
-    ]
-  },
-  rivers: {
-    id: 3,
-    name: 'Реки',
-    options: {
-      visible: true,
-      style: styles.river,
-    },
-    layers: [
-      {
-        id: 0,
+      },
+      rivers: {
+        id: 3,
+        name: 'Реки',
+        options: {
+          visible: false,
+          style: styles.river,
+        },
         vectors: [
           vector({
             features: new GeoJSON().readFeatures(geojsonRivers, { featureProjection: get(PROJECTION) }),
           })
         ]
-      }
-    ]
-  },
-  cities: {
-    id: 4,
-    name: 'Города',
-    options: {
-      visible: true,
-      style: styles.city,
-    },
-    layers: [
-      {
-        id: 0,
+      },
+      cities: {
+        id: 4,
+        name: 'Города',
+        options: {
+          visible: false,
+          style: styles.city,
+        },
         vectors: [
           vector({
             features: new GeoJSON().readFeatures(geojsonCities, { featureProjection: get(PROJECTION) }),
           })
         ]
-      }
-    ]
-  },
-  protectedArea: {
-    id: 5,
-    name: 'ООПТ',
-    options: {
-      visible: true,
-      style: styles.oopt,
-    },
-    layers: [
-      {
-        id: 0,
+      },
+      protectedArea: {
+        id: 5,
+        name: 'ООПТ',
+        options: {
+          visible: false,
+          style: styles.oopt,
+        },
         vectors: [
           vector({
             features: new GeoJSON().readFeatures(geojsonOOPT, { featureProjection: get(PROJECTION) }),
           })
         ]
-      }
-    ]
+      },
+    }
   },
   izhevsk: {
-    id: 6,
     name: 'Ижевск',
     options: {
       visible: true,
-      style: styles.oopt,
     },
-    layers: [
-      {
-        id: 0,
-        key: 'noise',
+    subjects: {
+      noise: {
         name: 'Уровень эквивалентного шума',
         options: {
           visible: true,
@@ -187,9 +161,7 @@ const initialState = {
           styles.noise(color)
         ])
       },
-      {
-        id: 1,
-        key: 'landscaping',
+      landscaping: {
         name: 'Озеленение',
         options: {
           visible: true,
@@ -202,10 +174,8 @@ const initialState = {
           styles.landscaping(fillColor)
         ])
       },
-      {
-        id: 2,
-        key: 'emissions',
-        name: 'Выбросы',
+      industrialZones: {
+        name: 'Промышленные зоны',
         options: {
           visible: true,
           prevVisible: null,
@@ -214,11 +184,11 @@ const initialState = {
           vector({
             features: new GeoJSON().readFeatures(emission, { featureProjection: get(PROJECTION) }),
           }),
-          styles.emissions
+          styles.industrialZones
         ])
       }
 
-    ]
+    }
   }
 };
 
@@ -228,45 +198,44 @@ const layerReducer = (state = initialState, { type, payload }) => {
       const layer = { ...state[payload.key] };
       const isLayerVisible = !layer.options.visible;
       layer.options.visible = isLayerVisible;
-      if (layer.layers[0].key) {
-        if (isLayerVisible) {
-          let isSomeSublayerVisible = false;
-          layer.layers.forEach(sublayer => {
-            const visible = sublayer.options.prevVisible ?? true;
-            sublayer.options.visible = visible;
-            if (visible) {
-              isSomeSublayerVisible = true;
-            }
-          });
-          if (!isSomeSublayerVisible) {
-            layer.layers.forEach(sublayer => {
-              sublayer.options.visible = true;
-            });
+      if (isLayerVisible) {
+        let isSomeSublayerVisible = false;
+        Object.values(layer.subjects).forEach(subject => {
+          const visible = subject.options.prevVisible ?? true;
+          subject.options.visible = visible;
+          if (visible) {
+            isSomeSublayerVisible = true;
           }
-        } else {
-          layer.layers.forEach(sublayer => {
-            sublayer.options.prevVisible = sublayer.options.visible;
-            sublayer.options.visible = false;
+        });
+        if (!isSomeSublayerVisible) {
+          Object.values(layer.subjects).forEach(subject => {
+            subject.options.visible = true;
           });
         }
+      } else {
+        Object.values(layer.subjects).forEach(subject => {
+          subject.options.prevVisible = subject.options.visible;
+          subject.options.visible = false;
+        });
       }
       return { ...state, [payload.key]: layer };
     case TOGGLE_SUBLAYER_VISIBILITY:
+      if (!(payload.layerKey in state
+        && payload.sublayerKey in state[payload.layerKey].subjects)) return state;
+
       const newState = { ...state };
+      const { subjects } = state[payload.layerKey];
 
-      const sublayers = state[payload.layerKey].layers.map(sublayer => {
-        if (sublayer.key === payload.sublayerKey) {
-          const isVisible = !sublayer.options.visible;
+      const toggledSublayer = subjects[payload.sublayerKey];
 
-          sublayer.options.prevVisible = !isVisible;
-          sublayer.options.visible = isVisible;
-          if (isVisible) {
-            newState[payload.layerKey].options.visible = true;
-          }
-        }
-        return sublayer;
-      });
-      if (sublayers.every(sublayers => !sublayers.options.visible)) {
+      const isVisible = !toggledSublayer.options.visible;
+      toggledSublayer.options.prevVisible = !isVisible;
+      toggledSublayer.options.visible = isVisible;
+      if (isVisible) {
+        newState[payload.layerKey].options.visible = true;
+      }
+
+      if (Object.values(subjects).every(subject => !subject.options.visible)) {
         newState[payload.layerKey].options.visible = false;
       }
       return newState;
