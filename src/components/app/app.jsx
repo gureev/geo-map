@@ -9,7 +9,7 @@ import { selectLayers } from '../../redux/selectors/layers.selectors';
 import LayersController from '../controls/layers-controller/layers-controller';
 
 const App = () => {
-  const zoom = useRef(9);
+  const zoom = useRef(11);
   const regions = useSelector(selectLayers);
   const [isVisibleOSM, setIsVisibleOSM] = useState(true);
 
