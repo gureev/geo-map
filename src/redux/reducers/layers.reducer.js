@@ -29,6 +29,12 @@ import industrialZoneOktyabrsky from '../../assets/layers/industrialZones/indust
 import industrialZonePervomaysky from '../../assets/layers/industrialZones/industrial_zone_pervomaysky.json';
 import industrialZoneUstinovsky from '../../assets/layers/industrialZones/industrial_zone_ustinovskiy.json';
 
+import kiza1 from '../../assets/layers/kiza/kiza1.json';
+import kiza15 from '../../assets/layers/kiza/kiza1.5.json';
+import kiza23 from '../../assets/layers/kiza/kiza2.3.json';
+import kiza28 from '../../assets/layers/kiza/kiza2.8.json';
+import kiza33 from '../../assets/layers/kiza/kiza3.3.json';
+
 const noises = [
   [noise58, 'rgba(251, 249, 224, 1)'],
   [noise61, 'rgba(249, 236, 142, 1)'],
@@ -51,6 +57,14 @@ const emissions = [
   industrialZoneOktyabrsky,
   industrialZonePervomaysky,
   industrialZoneUstinovsky,
+];
+
+const kizas = [
+  [kiza1, 'rgba(128, 207, 127, 0.5)'],
+  [kiza15, 'rgba(255, 254, 128, 0.5)'],
+  [kiza23, 'rgba(239, 184, 127, 0.5)'],
+  [kiza28, 'rgba(255, 127, 128, 0.5)'],
+  [kiza33, 'rgba(166, 147, 128, 0.5)'],
 ];
 
 const PROJECTION = 'EPSG:3857';
@@ -151,7 +165,7 @@ const initialState = {
       noise: {
         name: 'Уровень эквивалентного шума',
         options: {
-          visible: true,
+          visible: false,
           prevVisible: null,
         },
         vectors: noises.map(([noise, color]) => [
@@ -177,7 +191,7 @@ const initialState = {
       industrialZones: {
         name: 'Промышленные зоны',
         options: {
-          visible: true,
+          visible: false,
           prevVisible: null,
         },
         vectors: emissions.map((emission) => [
@@ -186,8 +200,20 @@ const initialState = {
           }),
           styles.industrialZones
         ])
+      },
+      kiza: {
+        name: 'КИЗА',
+        options: {
+          visible: false,
+          prevVisible: null,
+        },
+        vectors: kizas.map(([kiza, fillColor]) => [
+          vector({
+            features: new GeoJSON().readFeatures(kiza, { featureProjection: get(PROJECTION) }),
+          }),
+          styles.kiza(fillColor)
+        ])
       }
-
     }
   }
 };

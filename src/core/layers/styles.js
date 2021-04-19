@@ -115,3 +115,16 @@ export const industrialZones = [
     fill: new Fill({ color: 'rgba(231, 113, 72, 0.6)' }),
   })
 ];
+
+export const kiza = (fillColor) => [
+  new Style({
+    stroke: new Stroke({
+      color: 'rgba(35,35,35,1.0)',
+      lineDash: null,
+      lineCap: 'butt',
+      lineJoin: 'miter',
+      width: 0
+    }),
+    fill: new Fill({ color: fillColor })
+  })
+];
