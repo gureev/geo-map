@@ -35,6 +35,13 @@ import kiza23 from '../../assets/layers/kiza/kiza2.3.json';
 import kiza28 from '../../assets/layers/kiza/kiza2.8.json';
 import kiza33 from '../../assets/layers/kiza/kiza3.3.json';
 
+import index5 from '../../assets/layers/ib_meb/index5.json';
+import index7 from '../../assets/layers/ib_meb/index7.json';
+import index9 from '../../assets/layers/ib_meb/index9.json';
+import index11 from '../../assets/layers/ib_meb/index11.json';
+import index13 from '../../assets/layers/ib_meb/index13.json';
+import index15 from '../../assets/layers/ib_meb/index15.json';
+
 const noises = [
   [noise58, 'rgba(251, 249, 224, 1)'],
   [noise61, 'rgba(249, 236, 142, 1)'],
@@ -65,6 +72,15 @@ const kizas = [
   [kiza23, 'rgba(239, 184, 127, 0.5)'],
   [kiza28, 'rgba(255, 127, 128, 0.5)'],
   [kiza33, 'rgba(166, 147, 128, 0.5)'],
+];
+
+const ibMeb = [
+  [index5, 'rgba(79, 40, 0, 0.5)'],
+  [index7, 'rgba(254, 0, 0, 0.5)'],
+  [index9, 'rgba(207, 104, 1, 0.5)'],
+  [index11, 'rgba(255, 255, 1, 0.5)'],
+  [index13, 'rgba(0, 176, 0, 0.5)'],
+  [index15, 'rgba(1, 80, 0, 0.5)'],
 ];
 
 const PROJECTION = 'EPSG:3857';
@@ -210,6 +226,19 @@ const initialState = {
         vectors: kizas.map(([kiza, fillColor]) => [
           vector({
             features: new GeoJSON().readFeatures(kiza, { featureProjection: get(PROJECTION) }),
+          }),
+          styles.kiza(fillColor)
+        ])
+      },
+      ibMeb: {
+        name: 'Индекс медико-экологического благополучия',
+        options: {
+          visible: false,
+          prevVisible: null,
+        },
+        vectors: ibMeb.map(([ib, fillColor]) => [
+          vector({
+            features: new GeoJSON().readFeatures(ib, { featureProjection: get(PROJECTION) }),
           }),
           styles.kiza(fillColor)
         ])
