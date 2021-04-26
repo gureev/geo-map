@@ -42,6 +42,23 @@ import index11 from '../../assets/layers/ib_meb/index11.json';
 import index13 from '../../assets/layers/ib_meb/index13.json';
 import index15 from '../../assets/layers/ib_meb/index15.json';
 
+import iza14 from '../../assets/layers/iza/iza_1-4.json';
+import iza17 from '../../assets/layers/iza/iza_1-7.json';
+
+import izv01 from '../../assets/layers/izv/izv_0-1.json';
+import izv03 from '../../assets/layers/izv/izv_0-3.json';
+import izv07 from '../../assets/layers/izv/izv_0-7.json';
+
+import span13 from '../../assets/layers/span_1990/span_1-3_1990.json';
+import span17 from '../../assets/layers/span_1990/span_1-7_1990.json';
+import span23 from '../../assets/layers/span_1990/span_2-3_1990.json';
+import span28 from '../../assets/layers/span_1990/span_2-8_1990.json';
+
+import span03_2000 from '../../assets/layers/span_2000/span_0-3_2000.json';
+import span07_2000 from '../../assets/layers/span_2000/span_0-7_2000.json';
+import span09_2000 from '../../assets/layers/span_2000/span_0-9_2000.json';
+import span12_2000 from '../../assets/layers/span_2000/span_1-2_2000.json';
+
 const noises = [
   [noise58, 'rgba(251, 249, 224, 1)'],
   [noise61, 'rgba(249, 236, 142, 1)'],
@@ -81,6 +98,32 @@ const ibMeb = [
   [index11, 'rgba(255, 255, 1, 0.5)'],
   [index13, 'rgba(0, 176, 0, 0.5)'],
   [index15, 'rgba(1, 80, 0, 0.5)'],
+];
+
+const izas = [
+  [iza14, 'rgba(253, 233, 141, 0.5)'],
+  [iza17, 'rgba(255, 164, 138, 0.5)'],
+];
+
+const izvs = [
+  [izv01, 'rgba(126, 199, 115, 0.6)'],
+  [izv03, 'rgba(244, 242, 217, 0.6)'],
+  [izv07, 'rgba(217, 112, 111, 0.6)'],
+];
+
+const spans = [
+  [
+    [span13, 'rgba(255, 192, 124, 0.5)'],
+    [span17, 'rgba(255, 95, 95, 0.5)'],
+    [span23, 'rgba(255, 0, 0, 0.5)'],
+    [span28, 'rgba(148, 0, 0, 0.5)'],
+  ],
+  [
+    [span03_2000, 'rgba(89, 254, 255, 0.5)'],
+    [span07_2000, 'rgba(90, 255, 155, 0.5)'],
+    [span09_2000, 'rgba(255, 255, 101, 0.5)'],
+    [span12_2000, 'rgba(255, 192, 124, 0.5)'],
+  ]
 ];
 
 const PROJECTION = 'EPSG:3857';
@@ -242,7 +285,59 @@ const initialState = {
           }),
           styles.kiza(fillColor)
         ])
-      }
+      },
+      iza: {
+        name: 'Индекс загрязнения атмосферного воздуха в среднегодовом исчислении (нач. 2000г.)',
+        options: {
+          visible: false,
+          prevVisible: null,
+        },
+        vectors: izas.map(([iza, fillColor]) => [
+          vector({
+            features: new GeoJSON().readFeatures(iza, { featureProjection: get(PROJECTION) }),
+          }),
+          styles.landscaping(fillColor)
+        ])
+      },
+      izv: {
+        name: 'Состояние питьевой воды (нач. 2000г.)',
+        options: {
+          visible: false,
+          prevVisible: null,
+        },
+        vectors: izvs.map(([izv, fillColor]) => [
+          vector({
+            features: new GeoJSON().readFeatures(izv, { featureProjection: get(PROJECTION) }),
+          }),
+          styles.landscaping(fillColor)
+        ])
+      },
+      span1990: {
+        name: 'Суммарный показатель антропогенной нагрузки (1990г.)',
+        options: {
+          visible: false,
+          prevVisible: null,
+        },
+        vectors: spans[0].map(([span, fillColor]) => [
+          vector({
+            features: new GeoJSON().readFeatures(span, { featureProjection: get(PROJECTION) }),
+          }),
+          styles.landscaping(fillColor)
+        ])
+      },
+      span2000: {
+        name: 'Суммарный показатель антропогенной нагрузки (2000г.)',
+        options: {
+          visible: false,
+          prevVisible: null,
+        },
+        vectors: spans[1].map(([span, fillColor]) => [
+          vector({
+            features: new GeoJSON().readFeatures(span, { featureProjection: get(PROJECTION) }),
+          }),
+          styles.landscaping(fillColor)
+        ])
+      },
     }
   }
 };

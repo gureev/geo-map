@@ -3,8 +3,11 @@
   padding: 10px 16px;
   top: 10px;
   left: 10px;
+  max-width: 450px;
+  max-height: 430px;
+  overflow: auto;
   display: flex;
-  flex-flow: column;
+  flex-flow: column-reverse;
   align-items: flex-start;
   background: rgba(0, 0, 0, 0.5);
   color: #eee;
