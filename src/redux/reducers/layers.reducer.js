@@ -129,92 +129,6 @@ const spans = [
 const PROJECTION = 'EPSG:3857';
 
 const initialState = {
-  urfo: {
-    name: 'Уральский федеральный округ',
-    options: {
-      visible: false,
-    },
-    subjects: {
-      borders: {
-        id: 0,
-        name: 'Границы',
-        options: {
-          visible: false,
-          style: styles.border,
-        },
-        vectors: [
-          vector({
-            features: new GeoJSON().readFeatures(geojsonBorders, { featureProjection: get(PROJECTION) }),
-          })
-        ],
-      },
-      regions: {
-        id: 1,
-        name: 'Регионы',
-        options: {
-          visible: false,
-          style: styles.region,
-        },
-        vectors: [
-          vector({
-            features: new GeoJSON().readFeatures(geojsonRegions, { featureProjection: get(PROJECTION) }),
-          })
-        ]
-      },
-      seas: {
-        id: 2,
-        name: 'Моря',
-        options: {
-          visible: false,
-          style: styles.seas,
-        },
-        vectors: [
-          vector({
-            features: new GeoJSON().readFeatures(geojsonSeas, { featureProjection: get(PROJECTION) }),
-          })
-        ]
-      },
-      rivers: {
-        id: 3,
-        name: 'Реки',
-        options: {
-          visible: false,
-          style: styles.river,
-        },
-        vectors: [
-          vector({
-            features: new GeoJSON().readFeatures(geojsonRivers, { featureProjection: get(PROJECTION) }),
-          })
-        ]
-      },
-      cities: {
-        id: 4,
-        name: 'Города',
-        options: {
-          visible: false,
-          style: styles.city,
-        },
-        vectors: [
-          vector({
-            features: new GeoJSON().readFeatures(geojsonCities, { featureProjection: get(PROJECTION) }),
-          })
-        ]
-      },
-      protectedArea: {
-        id: 5,
-        name: 'ООПТ',
-        options: {
-          visible: false,
-          style: styles.oopt,
-        },
-        vectors: [
-          vector({
-            features: new GeoJSON().readFeatures(geojsonOOPT, { featureProjection: get(PROJECTION) }),
-          })
-        ]
-      },
-    }
-  },
   izhevsk: {
     name: 'Ижевск',
     options: {
@@ -339,7 +253,93 @@ const initialState = {
         ])
       },
     }
-  }
+  },
+  urfo: {
+    name: 'Уральский федеральный округ',
+    options: {
+      visible: false,
+    },
+    subjects: {
+      borders: {
+        id: 0,
+        name: 'Границы',
+        options: {
+          visible: false,
+          style: styles.border,
+        },
+        vectors: [
+          vector({
+            features: new GeoJSON().readFeatures(geojsonBorders, { featureProjection: get(PROJECTION) }),
+          })
+        ],
+      },
+      regions: {
+        id: 1,
+        name: 'Регионы',
+        options: {
+          visible: false,
+          style: styles.region,
+        },
+        vectors: [
+          vector({
+            features: new GeoJSON().readFeatures(geojsonRegions, { featureProjection: get(PROJECTION) }),
+          })
+        ]
+      },
+      seas: {
+        id: 2,
+        name: 'Моря',
+        options: {
+          visible: false,
+          style: styles.seas,
+        },
+        vectors: [
+          vector({
+            features: new GeoJSON().readFeatures(geojsonSeas, { featureProjection: get(PROJECTION) }),
+          })
+        ]
+      },
+      rivers: {
+        id: 3,
+        name: 'Реки',
+        options: {
+          visible: false,
+          style: styles.river,
+        },
+        vectors: [
+          vector({
+            features: new GeoJSON().readFeatures(geojsonRivers, { featureProjection: get(PROJECTION) }),
+          })
+        ]
+      },
+      cities: {
+        id: 4,
+        name: 'Города',
+        options: {
+          visible: false,
+          style: styles.city,
+        },
+        vectors: [
+          vector({
+            features: new GeoJSON().readFeatures(geojsonCities, { featureProjection: get(PROJECTION) }),
+          })
+        ]
+      },
+      protectedArea: {
+        id: 5,
+        name: 'ООПТ',
+        options: {
+          visible: false,
+          style: styles.oopt,
+        },
+        vectors: [
+          vector({
+            features: new GeoJSON().readFeatures(geojsonOOPT, { featureProjection: get(PROJECTION) }),
+          })
+        ]
+      },
+    }
+  },
 };
 
 const layerReducer = (state = initialState, { type, payload }) => {
